@@ -3350,6 +3350,8 @@ static pam_mysql_err_t pam_mysql_open_db(pam_mysql_ctx_t *ctx)
         goto out;
     }
 
+    mysql_options(&mysql,MYSQL_DEFAULT_AUTH,"mysql_native_password");
+
     if (NULL == mysql_real_connect(ctx->mysql_hdl, host,
                 ctx->user, (ctx->passwd == NULL ? "": ctx->passwd),
                 ctx->db, port, socket, 0)) {
